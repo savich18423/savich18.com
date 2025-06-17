@@ -3,149 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Savich18 — Хакерское портфолио</title>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <title>Savich18 — Портфолио</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --accent: #00ffea;
-      --bg: #000000;
-      --text: #00ffea;
-      --dim: #009688;
-      --box: rgba(0, 255, 234, 0.05);
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
-      cursor: url('https://avatanplus.com/files/resources/original/5a9cc762844d1161f46ad8ee.png'), auto;
+      font-family: 'Orbitron', sans-serif;
       user-select: none;
       -webkit-user-select: none;
-      -webkit-touch-callout: none;
     }
 
     body {
-      font-family: 'Share Tech Mono', monospace;
       background: url('https://net-byu.github.io/sss/0.1/assets/sss_video.GIF') no-repeat center center fixed;
       background-size: cover;
-      color: var(--text);
-      animation: flickerBg 20s infinite alternate;
+      color: #00fff7;
       overflow-x: hidden;
     }
 
-    @keyframes flickerBg {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.95; }
-    }
-
     header {
+      padding: 100px 20px 60px;
       text-align: center;
-      padding: 120px 20px 80px;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(4px);
-      animation: fadeInUp 1s ease-out;
+      background-color: rgba(0, 0, 0, 0.75);
     }
 
     header h1 {
       font-size: 4em;
-      color: var(--accent);
-      text-shadow: 0 0 15px var(--accent);
+      color: #00fff7;
+      text-shadow: 0 0 15px #00fff7;
     }
 
     header h2 {
-      font-size: 1.4em;
-      margin-top: 15px;
-      color: #b0f0e8;
+      margin-top: 10px;
+      font-size: 1.5em;
+      color: #aaffff;
     }
 
     .btn {
+      display: inline-block;
       margin-top: 40px;
-      padding: 15px 35px;
-      background-color: var(--accent);
+      padding: 12px 25px;
+      background-color: #00fff7;
       color: #000;
-      border: none;
-      font-size: 1.1em;
-      font-weight: bold;
-      border-radius: 8px;
       text-decoration: none;
-      transition: 0.3s;
-      box-shadow: 0 0 20px var(--accent);
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00fff7;
+      transition: all 0.3s ease-in-out;
     }
 
     .btn:hover {
-      background-color: #000;
-      color: var(--accent);
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 25px var(--accent);
+      background: transparent;
+      color: #00fff7;
+      border: 2px solid #00fff7;
     }
 
     main {
       max-width: 1000px;
-      margin: 0 auto;
+      margin: auto;
       padding: 40px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
     }
 
     section {
-      margin-bottom: 80px;
-      animation: fadeInUp 1.2s ease-out;
+      margin-bottom: 60px;
     }
 
     .section-title {
-      font-size: 2em;
+      font-size: 2.2em;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
       margin-bottom: 30px;
-      color: var(--accent);
-      text-shadow: 0 0 10px var(--accent);
       text-align: center;
     }
 
     .grid {
       display: grid;
-      gap: 30px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
     }
 
     .box {
-      background: var(--box);
-      border: 1px solid var(--accent);
-      padding: 25px;
+      background: rgba(0, 255, 247, 0.08);
+      border: 1px solid #00fff7;
       border-radius: 12px;
-      box-shadow: 0 0 20px #00ffeaa1;
+      padding: 20px;
+      box-shadow: 0 0 20px #00fff7a1;
       transition: 0.3s;
     }
 
     .box:hover {
       transform: scale(1.03);
-      box-shadow: 0 0 35px #00ffee;
+      box-shadow: 0 0 30px #00fff7;
     }
 
     .box h3 {
       margin-bottom: 10px;
-      color: var(--accent);
+      color: #00fff7;
     }
 
     .box p, .box a {
+      color: #caffff;
       font-size: 0.95em;
-      color: #b0f0e8;
       text-decoration: none;
     }
 
     .box a:hover {
-      color: var(--text);
-      text-shadow: 0 0 5px var(--accent);
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(40px); }
-      100% { opacity: 1; transform: translateY(0); }
+      text-decoration: underline;
+      color: #00fff7;
     }
 
     @media screen and (max-width: 600px) {
       header h1 { font-size: 2.5em; }
+      header h2 { font-size: 1.2em; }
     }
   </style>
 
-  <!-- Блокировка F12, Ctrl+U и других -->
+  <!-- Защита от копирования и правого клика -->
   <script>
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.onkeydown = function(e) {
@@ -166,7 +141,7 @@
   <header>
     <h1>SAVICH18</h1>
     <h2>Захар | 15 лет | Python, Java, HTML, C#, C++</h2>
-    <a href=\"#about\" class=\"btn\">🔍 Подробнее</a>
+    <a href=\"#about\" class=\"btn\">Подробнее ↓</a>
   </header>
 
   <main>
@@ -175,11 +150,11 @@
       <div class=\"grid\">
         <div class=\"box\">
           <h3>Кто я</h3>
-          <p>Захар из Вьетнама, 15 лет. Программирую с 10. Интересуюсь вебом, ботами, играми, парсингом и безопасностью.</p>
+          <p>Меня зовут Захар. Мне 15 лет. Живу во Вьетнаме. Программирую с 10 лет. Увлекаюсь безопасностью, вебом и автоматизацией.</p>
         </div>
         <div class=\"box\">
-          <h3>Технологии</h3>
-          <p>Python, Java, HTML/CSS, C#, C++. Работаю с веб-приложениями, телеграм-ботами, интерфейсами и даже с анализом кода (в учебных целях).</p>
+          <h3>Навыки</h3>
+          <p>Python, Java, HTML/CSS, C#, C++. Работаю с Telegram-ботами, веб-приложениями, UI, парсерами и стиллерами (учебно).</p>
         </div>
       </div>
     </section>
@@ -197,7 +172,7 @@
         </div>
         <div class=\"box\">
           <h3>Разное</h3>
-          <p>Web-приложения, боты, мини-игры, парсеры, стиллеры (учебно), UI и многое другое.</p>
+          <p>Боты, парсеры, web app, стиллеры в учебных целях, mini tools и многое другое.</p>
         </div>
       </div>
     </section>
