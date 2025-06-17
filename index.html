@@ -3,212 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Savich18 — Портфолио Захара</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Savich18 — Хакерское портфолио</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     :root {
-      --accent: #00bcd4;
-      --text: #f0f0f0;
-      --light-text: #9ee8ff;
-      --white: #fff;
-      --box: rgba(0, 0, 0, 0.75);
+      --accent: #00ffea;
+      --bg: #000000;
+      --text: #00ffea;
+      --dim: #009688;
+      --box: rgba(0, 255, 234, 0.05);
     }
 
     * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
       margin: 0;
       padding: 0;
-    }
-
-    html {
+      box-sizing: border-box;
       scroll-behavior: smooth;
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes zoomIn {
-      0% { transform: scale(0.95); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
       background: url('https://i.pinimg.com/originals/ed/21/6d/ed216d49c139926e7d5c71c32ebe02cf.gif') no-repeat center center fixed;
       background-size: cover;
-      animation: flicker 8s infinite alternate;
+      color: var(--text);
+      animation: flickerBg 20s infinite alternate;
     }
 
-    a {
-      color: var(--light-text);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 20px;
+    @keyframes flickerBg {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.93; }
     }
 
     header {
       text-align: center;
-      padding: 120px 20px 100px;
-      background: rgba(0, 0, 0, 0.6);
+      padding: 120px 20px 80px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
       animation: fadeInUp 1s ease-out;
     }
 
     header h1 {
       font-size: 4em;
-      color: var(--white);
+      color: var(--accent);
+      text-shadow: 0 0 15px var(--accent);
     }
 
     header h2 {
-      font-size: 1.8em;
-      font-weight: 300;
-      color: var(--light-text);
-      margin-top: 10px;
+      font-size: 1.4em;
+      margin-top: 15px;
+      color: #b0f0e8;
     }
 
-    .skills {
-      margin-top: 30px;
-      font-size: 1.2em;
-    }
-
-    .btn, .download-btn {
-      margin-top: 30px;
-      padding: 15px 30px;
-      background-image: linear-gradient(145deg, var(--accent), #008b9c);
-      color: var(--white);
-      border: none;
-      border-radius: 30px;
-      font-size: 1em;
+    .btn {
+      margin-top: 40px;
+      padding: 12px 30px;
+      background-color: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
       cursor: pointer;
-      transition: all 0.3s ease;
+      font-size: 1em;
+      border-radius: 5px;
       text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+      transition: 0.3s;
     }
 
-    .btn:hover, .download-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    .btn:hover {
+      background-color: var(--accent);
+      color: #000;
+      box-shadow: 0 0 15px var(--accent);
     }
 
-    .section {
-      animation: zoomIn 1s ease-in;
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    section {
+      margin-bottom: 80px;
+      animation: fadeInUp 1.2s ease-out;
     }
 
     .section-title {
-      font-size: 2.2em;
-      margin: 40px 0 30px;
+      font-size: 2em;
+      margin-bottom: 30px;
       color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
       text-align: center;
     }
 
     .grid {
       display: grid;
+      gap: 30px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
     }
 
     .box {
       background: var(--box);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px #00000070;
-      animation: fadeInUp 1s ease-out;
-      transition: transform 0.4s ease, box-shadow 0.4s;
+      border: 1px solid var(--accent);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffeaa1;
+      transition: 0.3s;
     }
 
     .box:hover {
       transform: scale(1.03);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 35px #00ffee;
     }
 
     .box h3 {
-      color: var(--accent);
       margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .box p, .box a {
+      font-size: 0.95em;
+      color: #b0f0e8;
+      text-decoration: none;
+    }
+
+    .box a:hover {
+      color: var(--text);
+      text-shadow: 0 0 5px var(--accent);
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @media screen and (max-width: 600px) {
       header h1 { font-size: 2.5em; }
-      header h2 { font-size: 1.2em; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Savich18</h1>
-    <h2>Захар — программист</h2>
-    <div class="skills">Python | Java | HTML | C# | C++</div>
-    <a href="#about" class="btn">Познакомиться</a>
-    <a href="resume.pdf" class="download-btn" download>📄 Скачать резюме</a>
+    <h1>SAVICH18</h1>
+    <h2>захар | 15 лет | программирование: python, java, html, c#, c++</h2>
+    <a href="#about" class="btn">↓ Подробнее</a>
   </header>
 
-  <main class="container">
-
-    <section class="section" id="about">
+  <main>
+    <section id="about">
       <div class="section-title">Обо мне</div>
       <div class="grid">
         <div class="box">
-          <h3>Кто я?</h3>
-          <p>Меня зовут Захар, живу во Вьетнаме. С 10 лет увлечён программированием. Сейчас мне 15, и я уже создал десятки проектов: игры, сайты, телеграм-боты и многое другое.</p>
+          <h3>Я из Вьетнама</h3>
+          <p>Меня зовут Захар. Я живу во Вьетнаме и программирую с 10 лет. Сейчас мне 15, и я создаю игры, сайты, телеграм-ботов, парсеры, утилиты и даже стиллеры (в учебных целях 😎).</p>
         </div>
         <div class="box">
-          <h3>Навыки</h3>
-          <p><strong>Языки:</strong> Python, Java, HTML, C#, C++</p>
-          <p><strong>Опыт:</strong> Telegram-боты, веб-приложения, парсеры, стиллер (в учебных целях)</p>
+          <h3>Технологии</h3>
+          <p>Языки: Python, Java, HTML, C#, C++<br>Проекты: веб-приложения, telegram-боты, инструменты автоматизации, парсеры</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
+    <section id="projects">
       <div class="section-title">Мои проекты</div>
       <div class="grid">
         <div class="box">
-          <h3>Игра</h3>
-          <p><a href="https://yandex.ru/games/app/442580" target="_blank">Играй на Яндексе</a></p>
+          <h3>Игра на Яндексе</h3>
+          <a href="https://yandex.ru/games/app/442580" target="_blank">Ссылка на игру →</a>
         </div>
         <div class="box">
-          <h3>Портфолио</h3>
-          <p><a href="https://savich18423.github.io/savich18.com/" target="_blank">Мой сайт</a></p>
+          <h3>Портфолио-сайт</h3>
+          <a href="https://savich18423.github.io/savich18.com/" target="_blank">Смотреть сайт →</a>
         </div>
         <div class="box">
           <h3>Разное</h3>
-          <p>Web-приложения, Telegram-боты, Android-инструменты, автоматизация и парсеры</p>
+          <p>Telegram-боты, web-интерфейсы, скрипты, проекты для Android, инструменты анализа и др.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="contact">
-      <div class="section-title">Связь</div>
+    <section id="contact">
+      <div class="section-title">Контакты</div>
       <div class="grid">
         <div class="box">
-          <h3>Почта</h3>
+          <h3>Email</h3>
           <p><a href="mailto:savich618@gmail.com">savich618@gmail.com</a></p>
         </div>
         <div class="box">
           <h3>Telegram</h3>
-          <p><a href="https://t.me/only_work4">@only_work4</a></p>
+          <p><a href="https://t.me/only_work4" target="_blank">@only_work4</a></p>
         </div>
       </div>
     </section>
-
   </main>
-
 </body>
 </html>
