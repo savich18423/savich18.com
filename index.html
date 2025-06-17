@@ -19,11 +19,12 @@
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
+      cursor: url('https://avatanplus.com/files/resources/original/5a9cc762844d1161f46ad8ee.png'), auto;
     }
 
     body {
       font-family: 'Share Tech Mono', monospace;
-      background: url('https://i.pinimg.com/originals/ed/21/6d/ed216d49c139926e7d5c71c32ebe02cf.gif') no-repeat center center fixed;
+      background: url('https://net-byu.github.io/sss/0.1/assets/sss_video.GIF') no-repeat center center fixed;
       background-size: cover;
       color: var(--text);
       animation: flickerBg 20s infinite alternate;
@@ -31,7 +32,7 @@
 
     @keyframes flickerBg {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.93; }
+      50% { opacity: 0.95; }
     }
 
     header {
@@ -56,21 +57,23 @@
 
     .btn {
       margin-top: 40px;
-      padding: 12px 30px;
-      background-color: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      cursor: pointer;
-      font-size: 1em;
-      border-radius: 5px;
+      padding: 15px 35px;
+      background-color: var(--accent);
+      color: #000;
+      border: none;
+      font-size: 1.1em;
+      font-weight: bold;
+      border-radius: 8px;
       text-decoration: none;
       transition: 0.3s;
+      box-shadow: 0 0 20px var(--accent);
     }
 
     .btn:hover {
-      background-color: var(--accent);
-      color: #000;
-      box-shadow: 0 0 15px var(--accent);
+      background-color: #000;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 25px var(--accent);
     }
 
     main {
@@ -136,14 +139,24 @@
     @media screen and (max-width: 600px) {
       header h1 { font-size: 2.5em; }
     }
+
+    #minigame {
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    #minigame canvas {
+      background-color: #111;
+      border: 2px solid var(--accent);
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>SAVICH18</h1>
-    <h2>захар | 15 лет | программирование: python, java, html, c#, c++</h2>
-    <a href="#about" class="btn">↓ Подробнее</a>
+    <h2>Захар | 15 лет | Python, Java, HTML, C#, C++</h2>
+    <a href="#about" class="btn">🔍 Подробнее</a>
   </header>
 
   <main>
@@ -151,12 +164,12 @@
       <div class="section-title">Обо мне</div>
       <div class="grid">
         <div class="box">
-          <h3>Я из Вьетнама</h3>
-          <p>Меня зовут Захар. Я живу во Вьетнаме и программирую с 10 лет. Сейчас мне 15, и я создаю игры, сайты, телеграм-ботов, парсеры, утилиты и даже стиллеры (в учебных целях 😎).</p>
+          <h3>Кто я</h3>
+          <p>Захар из Вьетнама, 15 лет. Программирую с 10. Интересуюсь вебом, ботами, играми, парсингом и безопасностью.</p>
         </div>
         <div class="box">
           <h3>Технологии</h3>
-          <p>Языки: Python, Java, HTML, C#, C++<br>Проекты: веб-приложения, telegram-боты, инструменты автоматизации, парсеры</p>
+          <p>Python, Java, HTML/CSS, C#, C++. Работаю с веб, телеграм-ботами, интерфейсами, и даже с стиллерами (только для учёбы!).</p>
         </div>
       </div>
     </section>
@@ -165,7 +178,7 @@
       <div class="section-title">Мои проекты</div>
       <div class="grid">
         <div class="box">
-          <h3>Игра на Яндексе</h3>
+          <h3>Игра</h3>
           <a href="https://yandex.ru/games/app/442580" target="_blank">Ссылка на игру →</a>
         </div>
         <div class="box">
@@ -173,14 +186,14 @@
           <a href="https://savich18423.github.io/savich18.com/" target="_blank">Смотреть сайт →</a>
         </div>
         <div class="box">
-          <h3>Разное</h3>
-          <p>Telegram-боты, web-интерфейсы, скрипты, проекты для Android, инструменты анализа и др.</p>
+          <h3>Ещё проекты</h3>
+          <p>Web-приложения, боты, мини-игры, парсеры, интерфейсы.</p>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <div class="section-title">Контакты</div>
+      <div class="section-title">Связь</div>
       <div class="grid">
         <div class="box">
           <h3>Email</h3>
@@ -192,6 +205,35 @@
         </div>
       </div>
     </section>
+
+    <section id="minigame">
+      <div class="section-title">🎮 Мини-игра</div>
+      <canvas id="gameCanvas" width="300" height="300"></canvas>
+    </section>
   </main>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let x = 150, y = 150, dx = 2, dy = 2, r = 15;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fillStyle = \"#00ffee\";
+      ctx.fill();
+      ctx.closePath();
+
+      if(x + dx > canvas.width - r || x + dx < r) dx = -dx;
+      if(y + dy > canvas.height - r || y + dy < r) dy = -dy;
+
+      x += dx;
+      y += dy;
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+
 </body>
 </html>
