@@ -5,12 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savich18 — Захар, программист</title>
   <style>
+    :root {
+      --bg: #1e1e2f;
+      --bg-alt: #2c2c2c;
+      --text: #ffffff;
+      --highlight: #00bcd4;
+      --box-bg: #3b3b3b;
+      --link: #9ee8ff;
+    }
+
+    body.light {
+      --bg: #f9f9f9;
+      --bg-alt: #e0e0e0;
+      --text: #111;
+      --highlight: #007a9a;
+      --box-bg: #ffffff;
+      --link: #007a9a;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #2e2e4f);
-      color: white;
-      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.5s, color 0.5s;
     }
 
     header {
@@ -21,45 +39,68 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      background: linear-gradient(135deg, var(--bg), var(--bg-alt));
     }
 
     h1 {
-      font-size: 4em;
+      font-size: 3.5em;
       margin: 0;
-      color: #f0f0f0;
+      animation: fadeIn 1s ease forwards;
     }
 
     h2 {
-      font-size: 2em;
+      font-size: 1.8em;
       font-weight: 300;
-      color: #9ee8ff;
+      color: var(--link);
       margin-top: 10px;
+      animation: fadeIn 1.5s ease forwards;
     }
 
     .skills {
       margin-top: 30px;
       font-size: 1.2em;
-      color: #ccc;
+      color: var(--text);
+      animation: fadeIn 2s ease forwards;
     }
 
     .btn {
       margin-top: 40px;
       padding: 15px 30px;
-      background-color: #00bcd4;
+      background-color: var(--highlight);
       color: white;
       border: none;
       border-radius: 30px;
       font-size: 1em;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s;
     }
 
     .btn:hover {
-      background-color: #0097a7;
+      background-color: darkcyan;
+      transform: scale(1.05);
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--box-bg);
+      border: none;
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--highlight);
+      color: white;
     }
 
     .section {
-      background: #2c2c2c;
+      background: var(--bg-alt);
       padding: 60px 20px;
     }
 
@@ -72,28 +113,53 @@
     }
 
     .box {
-      background: #3b3b3b;
+      background: var(--box-bg);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 0 10px #00000055;
+      box-shadow: 0 0 10px #00000030;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease both;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px #00000040;
     }
 
     .box h3 {
       margin-top: 0;
-      color: #00bcd4;
+      color: var(--highlight);
     }
 
     a {
-      color: #9ee8ff;
+      color: var(--link);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 { font-size: 2.5em; }
+      h2 { font-size: 1.2em; }
+      .skills { font-size: 1em; }
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌙/☀️</button>
+
   <header>
     <h1>Savich18</h1>
     <h2>Захар — программист</h2>
@@ -111,16 +177,16 @@
       <div class="box">
         <h3>Программирование</h3>
         <p><strong>Языки:</strong> Python, Java, HTML, C#, C++</p>
-        <p><strong>Навыки:</strong> Telegram-боты, веб-приложения, игры, сайты, автоматизация, парсинг, изучаю архитектуру приложений.</p>
+        <p><strong>Навыки:</strong> Telegram-боты, веб-приложения, игры, сайты, автоматизация, парсинг, архитектура.</p>
       </div>
 
       <div class="box">
         <h3>Мои проекты</h3>
         <ul>
           <li><a href="https://yandex.ru/games/app/442580" target="_blank">Игра на Яндекс Играх</a></li>
-          <li><a href="https://savich18423.github.io/savich18.com/" target="_blank">Мой сайт-портфолио</a></li>
-          <li>+ куча проектов на веб, Telegram, Android</li>
-          <li>В том числе стиллер (в учебных целях)</li>
+          <li><a href="https://savich18423.github.io/savich18.com/" target="_blank">Сайт-портфолио</a></li>
+          <li>Куча проектов: Web, Telegram, Android</li>
+          <li>Учебный стиллер (исследовательские цели)</li>
         </ul>
       </div>
 
@@ -131,5 +197,11 @@
       </div>
     </div>
   </section>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
 </body>
 </html>
