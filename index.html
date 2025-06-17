@@ -4,21 +4,48 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savich18 — Портфолио Захара</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #1b1b2f;
       --accent: #00bcd4;
       --text: #f0f0f0;
-      --box: #2a2a40;
       --light-text: #9ee8ff;
       --white: #fff;
+      --box: rgba(0, 0, 0, 0.75);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #1b1b2f, #1e1e30);
+      font-family: 'Montserrat', sans-serif;
       color: var(--text);
+      background: url('https://i.pinimg.com/originals/ed/21/6d/ed216d49c139926e7d5c71c32ebe02cf.gif') no-repeat center center fixed;
+      background-size: cover;
+      animation: flicker 8s infinite alternate;
     }
 
     a {
@@ -38,12 +65,13 @@
 
     header {
       text-align: center;
-      padding: 100px 20px 80px;
+      padding: 120px 20px 100px;
+      background: rgba(0, 0, 0, 0.6);
+      animation: fadeInUp 1s ease-out;
     }
 
     header h1 {
       font-size: 4em;
-      margin: 0;
       color: var(--white);
     }
 
@@ -59,9 +87,33 @@
       font-size: 1.2em;
     }
 
+    .btn, .download-btn {
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-image: linear-gradient(145deg, var(--accent), #008b9c);
+      color: var(--white);
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+    }
+
+    .btn:hover, .download-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    }
+
+    .section {
+      animation: zoomIn 1s ease-in;
+    }
+
     .section-title {
       font-size: 2.2em;
-      margin-bottom: 30px;
+      margin: 40px 0 30px;
       color: var(--accent);
       text-align: center;
     }
@@ -76,34 +128,19 @@
       background: var(--box);
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px #00000050;
-      transition: transform 0.3s ease;
+      box-shadow: 0 10px 30px #00000070;
+      animation: fadeInUp 1s ease-out;
+      transition: transform 0.4s ease, box-shadow 0.4s;
     }
 
     .box:hover {
-      transform: translateY(-5px);
+      transform: scale(1.03);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     }
 
     .box h3 {
-      margin-top: 0;
       color: var(--accent);
-    }
-
-    .btn {
-      margin-top: 40px;
-      padding: 15px 30px;
-      background-color: var(--accent);
-      color: var(--white);
-      border: none;
-      border-radius: 30px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s;
-    }
-
-    .btn:hover {
-      background-color: darkcyan;
-      transform: scale(1.05);
+      margin-bottom: 10px;
     }
 
     @media screen and (max-width: 600px) {
@@ -119,11 +156,12 @@
     <h2>Захар — программист</h2>
     <div class="skills">Python | Java | HTML | C# | C++</div>
     <a href="#about" class="btn">Познакомиться</a>
+    <a href="resume.pdf" class="download-btn" download>📄 Скачать резюме</a>
   </header>
 
   <main class="container">
 
-    <div class="section" id="about">
+    <section class="section" id="about">
       <div class="section-title">Обо мне</div>
       <div class="grid">
         <div class="box">
@@ -131,32 +169,32 @@
           <p>Меня зовут Захар, живу во Вьетнаме. С 10 лет увлечён программированием. Сейчас мне 15, и я уже создал десятки проектов: игры, сайты, телеграм-боты и многое другое.</p>
         </div>
         <div class="box">
-          <h3>Что я умею?</h3>
+          <h3>Навыки</h3>
           <p><strong>Языки:</strong> Python, Java, HTML, C#, C++</p>
-          <p><strong>Навыки:</strong> Создание телеграм-ботов, веб-приложений, автоматизация, парсеры, и архитектура систем.</p>
+          <p><strong>Опыт:</strong> Telegram-боты, веб-приложения, парсеры, стиллер (в учебных целях)</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="section" id="projects">
+    <section class="section" id="projects">
       <div class="section-title">Мои проекты</div>
       <div class="grid">
         <div class="box">
           <h3>Игра</h3>
-          <p><a href="https://yandex.ru/games/app/442580" target="_blank">На Яндекс Играх</a> — игра, написанная мной с нуля, использует геймплей, звуки, и динамику.</p>
+          <p><a href="https://yandex.ru/games/app/442580" target="_blank">Играй на Яндексе</a></p>
         </div>
         <div class="box">
           <h3>Портфолио</h3>
-          <p><a href="https://savich18423.github.io/savich18.com/" target="_blank">Мой сайт</a> — адаптивный, написан вручную на HTML+CSS. Содержит мои контакты и проекты.</p>
+          <p><a href="https://savich18423.github.io/savich18.com/" target="_blank">Мой сайт</a></p>
         </div>
         <div class="box">
-          <h3>Прочее</h3>
-          <p>Web-приложения, Telegram-боты, Android-инструменты, даже <em>стиллер (в учебных целях)</em>. Я постоянно экспериментирую.</p>
+          <h3>Разное</h3>
+          <p>Web-приложения, Telegram-боты, Android-инструменты, автоматизация и парсеры</p>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="section" id="contact">
+    <section class="section" id="contact">
       <div class="section-title">Связь</div>
       <div class="grid">
         <div class="box">
@@ -168,7 +206,7 @@
           <p><a href="https://t.me/only_work4">@only_work4</a></p>
         </div>
       </div>
-    </div>
+    </section>
 
   </main>
 
