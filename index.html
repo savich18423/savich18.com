@@ -7,15 +7,19 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1c1c1c, #2e2e2e);
+      background: linear-gradient(to right, #1f1f1f, #2a2a2a);
       color: #f1f1f1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 40px 20px;
+      flex: 1;
     }
-    h1, h2 {
+    h1, h2, h3 {
       text-align: center;
     }
     .button {
@@ -47,23 +51,33 @@
       color: #aaa;
       margin-top: 10px;
     }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #111;
+      color: #777;
+      font-size: 13px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- Главная -->
+    <!-- ОБО МНЕ -->
     <div id="home" class="visible">
-      <h1>savich18 - company</h1>
-      <h2>Re: I Wasn't Supposed to Survive</h2>
-      <p>Игра, которую вы не забудете. Психологический триллер, в котором всё не так, как кажется...</p>
-      <a href="#" class="button" onclick="showSection('episodes')">Подробнее</a>
+      <h1>Обо мне</h1>
+      <p>Привет!</p>
+      <p>Добро пожаловать на мой сайт. Меня зовут <strong>Захар Савченко</strong>, я в одиночку создаю игры и выпускаю их под именем <strong>Savich18-company</strong>.</p>
+      <p>Напишите мне, если вы хотите к нам в команду: <a href="mailto:savich618@gmail.com">savich618@gmail.com</a></p>
+      <p>Спасибо Вам за поддержку!</p>
+
+      <a href="#" class="button" onclick="showSection('episodes')">Перейти к игре</a>
     </div>
 
-    <!-- Эпизоды -->
+    <!-- ЭПИЗОДЫ -->
     <div id="episodes" class="section">
-      <h2>Эпизоды</h2>
-      <h3>Episode 1 — Something Was Off</h3>
+      <h2>Re: I Wasn't Supposed to Survive</h2>
+      <h3>Эпизод 1 — Something Was Off</h3>
       <p><strong>Лин</strong>, 26 лет, просто ищет, где переждать трудные времена.</p>
       <p>Новая подработка. Временное жильё. Несколько тихих ночей.</p>
       <p>Но атмосфера сгущается. Люди ведут себя странно. Места кажутся чужими.</p>
@@ -77,6 +91,10 @@
     </div>
 
   </div>
+
+  <footer>
+    ©2025 "Emika_Games" Все права защищены
+  </footer>
 
   <script>
     function showSection(id) {
