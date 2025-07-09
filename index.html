@@ -2,109 +2,131 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>savich18 - company</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #1f1f1f, #2a2a2a);
-      color: #f1f1f1;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      background: #0a0a0a;
+      color: #f2f2f2;
+      overflow-x: hidden;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      flex: 1;
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+      animation: fadeIn 1s ease;
     }
-    h1, h2, h3 {
+    h1, h2 {
       text-align: center;
     }
     .button {
       display: inline-block;
       padding: 12px 24px;
-      background-color: #00aaff;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
+      background: #00bcd4;
+      color: white;
       text-decoration: none;
-      font-weight: bold;
+      border-radius: 8px;
       transition: background 0.3s ease;
       margin-top: 20px;
     }
     .button:hover {
-      background-color: #008ecc;
+      background: #0097a7;
     }
-    .section {
-      display: none;
+    .game-card {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px #000;
+      transition: transform 0.3s ease;
     }
-    .visible {
-      display: block;
+    .game-card:hover {
+      transform: translateY(-5px);
     }
-    a {
-      color: #00c0ff;
-    }
-    .meta {
-      font-size: 14px;
-      color: #aaa;
-      margin-top: 10px;
+    .screenshots img {
+      width: 100%;
+      max-width: 400px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #333;
     }
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #111;
-      color: #777;
+      background: #111;
       font-size: 13px;
+      color: #888;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      .screenshots img {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- ОБО МНЕ -->
-    <div id="home" class="visible">
-      <h1>Обо мне</h1>
-      <p>Привет!</p>
-      <p>Добро пожаловать на мой сайт. Меня зовут <strong>Захар Савченко</strong>, я в одиночку создаю игры и выпускаю их под именем <strong>Savich18-company</strong>.</p>
-      <p>Напишите мне, если вы хотите к нам в команду: <a href="mailto:savich618@gmail.com">savich618@gmail.com</a></p>
-      <p>Спасибо Вам за поддержку!</p>
+  <!-- BIO -->
+  <section>
+    <h1>Обо мне</h1>
+    <p style="text-align:center; font-size: 18px;">
+      Привет!<br>
+      Меня зовут Захар Савченко. Я создаю игры один и выпускаю их под именем <strong>Savich18-company</strong>.<br>
+      Хочешь в команду? Пиши: <a href="mailto:savich618@gmail.com">savich618@gmail.com</a>
+    </p>
+  </section>
 
-      <a href="#" class="button" onclick="showSection('episodes')">Перейти к игре</a>
+  <!-- МОИ ИГРЫ -->
+  <section>
+    <h2>Мои игры</h2>
+
+    <div class="game-card">
+      <h3>🎮 Re: I Wasn't Supposed to Survive</h3>
+      <p>
+        Психологический триллер. Главная героиня Лин, 26 лет, находит временное жильё и подработку, но атмосфера начинает странно меняться...
+      </p>
+      <a href="#game-details" class="button">Подробнее</a>
     </div>
+  </section>
 
-    <!-- ЭПИЗОДЫ -->
-    <div id="episodes" class="section">
-      <h2>Re: I Wasn't Supposed to Survive</h2>
-      <h3>Эпизод 1 — Something Was Off</h3>
-      <p><strong>Лин</strong>, 26 лет, просто ищет, где переждать трудные времена.</p>
-      <p>Новая подработка. Временное жильё. Несколько тихих ночей.</p>
-      <p>Но атмосфера сгущается. Люди ведут себя странно. Места кажутся чужими.</p>
-      <p><em>Что-то нарушает границы привычного. Что-то… не так.</em></p>
-      <div class="meta">
-        ⏳ Время прохождения: 30–40 минут<br>
-        🗓️ Дата релиза: 25 июля 2025<br>
-        💾 <a href="https://itch.io" target="_blank">Скачать на itch.io (бесплатно)</a>
-      </div>
-      <a href="#" class="button" onclick="showSection('home')">← Назад</a>
+  <!-- ПОДРОБНЕЕ ОБ ИГРЕ -->
+  <section id="game-details">
+    <h2>Re: I Wasn't Supposed to Survive</h2>
+    <p><strong>Эпизод 1 — Something Was Off</strong></p>
+    <p>
+      Лин, 26 лет, просто ищет, где переждать трудные времена.<br>
+      Новая подработка. Временное жильё. Несколько тихих ночей.<br><br>
+      Но атмосфера сгущается. Люди ведут себя странно. Места кажутся чужими.<br>
+      <em>Что-то нарушает границы привычного. Что-то… не так.</em>
+    </p>
+
+    <ul style="font-size: 14px; color: #ccc;">
+      <li>📅 Дата релиза: 25.07.2025</li>
+      <li>🕒 Время прохождения: 30–40 минут</li>
+      <li>💾 <a href="https://itch.io" target="_blank">Скачать на itch.io (бесплатно)</a></li>
+    </ul>
+
+    <!-- Скриншоты -->
+    <div class="screenshots">
+      <a href="https://ibb.co/XMTPBt3" target="_blank">
+        <img src="https://i.ibb.co/wj1qH4w/2025-07-09-192650.png" alt="Screenshot 1">
+      </a>
+      <a href="https://ibb.co/tpkpbDr4" target="_blank">
+        <img src="https://i.ibb.co/hFhFKVzy/2025-07-09-192940.png" alt="Screenshot 2">
+      </a>
     </div>
+  </section>
 
-  </div>
-
+  <!-- ПОДВАЛ -->
   <footer>
     ©2025 "Emika_Games" Все права защищены
   </footer>
 
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('.container > div').forEach(div => {
-        div.classList.remove('visible');
-        div.classList.add('section');
-      });
-      document.getElementById(id).classList.remove('section');
-      document.getElementById(id).classList.add('visible');
-    }
-  </script>
 </body>
 </html>
