@@ -16,9 +16,9 @@
       padding: 60px 20px;
       max-width: 900px;
       margin: auto;
-      animation: fadeIn 1s ease;
+      animation: fadeIn 0.8s ease;
     }
-    h1, h2 {
+    h1, h2, h3 {
       text-align: center;
     }
     .button {
@@ -44,6 +44,22 @@
     }
     .game-card:hover {
       transform: translateY(-5px);
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(10,10,10, 0.98);
+      color: #fff;
+      display: none;
+      overflow-y: auto;
+      z-index: 10;
+      animation: fadeIn 0.5s ease;
+    }
+    .overlay-content {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 20px;
     }
     .screenshots img {
       width: 100%;
@@ -73,60 +89,69 @@
 <body>
 
   <!-- BIO -->
-  <section>
+  <section id="main">
     <h1>Обо мне</h1>
     <p style="text-align:center; font-size: 18px;">
       Привет!<br>
       Меня зовут Захар Савченко. Я создаю игры один и выпускаю их под именем <strong>Savich18-company</strong>.<br>
       Хочешь в команду? Пиши: <a href="mailto:savich618@gmail.com">savich618@gmail.com</a>
     </p>
-  </section>
 
-  <!-- МОИ ИГРЫ -->
-  <section>
     <h2>Мои игры</h2>
-
     <div class="game-card">
       <h3>🎮 Re: I Wasn't Supposed to Survive</h3>
       <p>
-        Психологический триллер. Главная героиня Лин, 26 лет, находит временное жильё и подработку, но атмосфера начинает странно меняться...
+        Психологический триллер. Лин пытается выжить, но мир вокруг начинает вести себя странно...
       </p>
-      <a href="#game-details" class="button">Подробнее</a>
+      <a href="#" class="button" onclick="showGameDetails()">Подробнее</a>
     </div>
   </section>
 
-  <!-- ПОДРОБНЕЕ ОБ ИГРЕ -->
-  <section id="game-details">
-    <h2>Re: I Wasn't Supposed to Survive</h2>
-    <p><strong>Эпизод 1 — Something Was Off</strong></p>
-    <p>
-      Лин, 26 лет, просто ищет, где переждать трудные времена.<br>
-      Новая подработка. Временное жильё. Несколько тихих ночей.<br><br>
-      Но атмосфера сгущается. Люди ведут себя странно. Места кажутся чужими.<br>
-      <em>Что-то нарушает границы привычного. Что-то… не так.</em>
-    </p>
+  <!-- OVERLAY "ЭКРАН ИГРЫ" -->
+  <div id="gameOverlay" class="overlay">
+    <div class="overlay-content">
+      <h2>Re: I Wasn't Supposed to Survive</h2>
+      <p><strong>Эпизод 1 — Something Was Off</strong></p>
+      <p>
+        Лин, 26 лет, просто ищет, где переждать трудные времена.<br>
+        Новая подработка. Временное жильё. Несколько тихих ночей.<br><br>
+        Но атмосфера сгущается. Люди ведут себя странно. Места кажутся чужими.<br>
+        <em>Что-то нарушает границы привычного. Что-то… не так.</em>
+      </p>
 
-    <ul style="font-size: 14px; color: #ccc;">
-      <li>📅 Дата релиза: 25.07.2025</li>
-      <li>🕒 Время прохождения: 30–40 минут</li>
-      <li>💾 <a href="https://itch.io" target="_blank">Скачать на itch.io (бесплатно)</a></li>
-    </ul>
+      <ul style="font-size: 14px; color: #ccc;">
+        <li>📅 Дата релиза: 25.07.2025</li>
+        <li>🕒 Время прохождения: 30–40 минут</li>
+        <li>💾 <a href="https://itch.io" target="_blank">Скачать на itch.io (бесплатно)</a></li>
+      </ul>
 
-    <!-- Скриншоты -->
-    <div class="screenshots">
-      <a href="https://ibb.co/XMTPBt3" target="_blank">
-        <img src="https://i.ibb.co/wj1qH4w/2025-07-09-192650.png" alt="Screenshot 1">
-      </a>
-      <a href="https://ibb.co/tpkpbDr4" target="_blank">
-        <img src="https://i.ibb.co/hFhFKVzy/2025-07-09-192940.png" alt="Screenshot 2">
-      </a>
+      <div class="screenshots">
+        <a href="https://ibb.co/XMTPBt3" target="_blank">
+          <img src="https://i.ibb.co/wj1qH4w/2025-07-09-192650.png" alt="Screenshot 1">
+        </a>
+        <a href="https://ibb.co/tpkpbDr4" target="_blank">
+          <img src="https://i.ibb.co/hFhFKVzy/2025-07-09-192940.png" alt="Screenshot 2">
+        </a>
+      </div>
+
+      <br>
+      <a href="#" class="button" onclick="hideGameDetails()">← Назад</a>
     </div>
-  </section>
+  </div>
 
-  <!-- ПОДВАЛ -->
+  <!-- FOOTER -->
   <footer>
     ©2025 "Emika_Games" Все права защищены
   </footer>
 
+  <script>
+    function showGameDetails() {
+      document.getElementById('gameOverlay').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+    function hideGameDetails() {
+      document.getElementById('gameOverlay').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
