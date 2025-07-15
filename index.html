@@ -2,156 +2,98 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>savich18 - company</title>
+  <title>GPT Чат</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0a0a;
-      color: #f2f2f2;
-      overflow-x: hidden;
-    }
-    section {
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: auto;
-      animation: fadeIn 0.8s ease;
-    }
-    h1, h2, h3 {
-      text-align: center;
-    }
-    .button {
-      display: inline-block;
-      padding: 12px 24px;
-      background: #00bcd4;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-      margin-top: 20px;
-    }
-    .button:hover {
-      background: #0097a7;
-    }
-    .game-card {
-      background: #1a1a1a;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 30px;
-      box-shadow: 0 0 10px #000;
-      transition: transform 0.3s ease;
-    }
-    .game-card:hover {
-      transform: translateY(-5px);
-    }
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(10,10,10, 0.98);
+      background-color: #111;
       color: #fff;
-      display: none;
-      overflow-y: auto;
-      z-index: 10;
-      animation: fadeIn 0.5s ease;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
     }
-    .overlay-content {
-      max-width: 800px;
-      margin: 60px auto;
+    .chat-container {
+      max-width: 700px;
+      margin: auto;
       padding: 20px;
     }
-    .screenshots img {
+    .message {
+      padding: 10px 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+    .user {
+      background: #333;
+      text-align: right;
+    }
+    .bot {
+      background: #222;
+      text-align: left;
+    }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
       width: 100%;
-      max-width: 400px;
-      margin: 10px;
-      border-radius: 8px;
-      border: 1px solid #333;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
     }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      font-size: 13px;
-      color: #888;
+    button {
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 600px) {
-      .screenshots img {
-        max-width: 100%;
-      }
+    button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-
-  <!-- BIO -->
-  <section id="main">
-    <h1>Обо мне</h1>
-    <p style="text-align:center; font-size: 18px;">
-      Привет!<br>
-      Меня зовут Захар Савченко. Я создаю игры один и выпускаю их под именем <strong>Savich18-company</strong>.<br>
-      Хочешь в команду? Пиши: <a href="mailto:savich618@gmail.com">savich618@gmail.com</a>
-    </p>
-
-    <h2>Мои игры</h2>
-    <div class="game-card">
-      <h3>🎮 Re: I Wasn't Supposed to Survive</h3>
-      <p>
-        Психологический триллер. Лин пытается выжить, но мир вокруг начинает вести себя странно...
-      </p>
-      <a href="#" class="button" onclick="showGameDetails()">Подробнее</a>
-    </div>
-  </section>
-
-  <!-- OVERLAY "ЭКРАН ИГРЫ" -->
-  <div id="gameOverlay" class="overlay">
-    <div class="overlay-content">
-      <h2>Re: I Wasn't Supposed to Survive</h2>
-      <p><strong>Эпизод 1 — Something Was Off</strong></p>
-      <p>
-        Лин, 26 лет, просто ищет, где переждать трудные времена.<br>
-        Новая подработка. Временное жильё. Несколько тихих ночей.<br><br>
-        Но атмосфера сгущается. Люди ведут себя странно. Места кажутся чужими.<br>
-        <em>Что-то нарушает границы привычного. Что-то… не так.</em>
-      </p>
-
-      <ul style="font-size: 14px; color: #ccc;">
-        <li>📅 Дата релиза: 25.07.2025</li>
-        <li>🕒 Время прохождения: 30–40 минут</li>
-        <li>💾 <a href="https://itch.io" target="_blank">Скачать на itch.io (бесплатно)</a></li>
-      </ul>
-
-      <div class="screenshots">
-  <a href="https://ibb.co/tpkpbDr4" target="_blank">
-    <img src="https://i.ibb.co/hFhFKVzy/2025-07-09-192940.png" alt="Screenshot main">
-  </a>
-  <a href="https://ibb.co/XMTPBt3" target="_blank">
-    <img src="https://i.ibb.co/wj1qH4w/2025-07-09-192650.png" alt="Screenshot alt">
-  </a>
-</div>
-
-
-      <br>
-      <a href="#" class="button" onclick="hideGameDetails()">← Назад</a>
-    </div>
+  <div class="chat-container" id="chat">
+    <h2>GPT Чат</h2>
+    <div id="messages"></div>
+    <input id="input" type="text" placeholder="Напиши что-нибудь..." />
+    <button onclick="sendMessage()">Отправить</button>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    ©2025 "Emika_Games" Все права защищены
-  </footer>
-
   <script>
-    function showGameDetails() {
-      document.getElementById('gameOverlay').style.display = 'block';
-      window.scrollTo(0, 0);
+    const API_KEY = "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";
+    const messages = [];
+
+    async function sendMessage() {
+      const input = document.getElementById("input");
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage("user", text);
+      input.value = "";
+
+      messages.push({ role: "user", content: text });
+
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${API_KEY}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          model: "mistralai/mistral-7b-instruct",
+          messages: messages,
+        })
+      });
+
+      const data = await response.json();
+      const reply = data.choices?.[0]?.message?.content || "Ошибка ответа";
+
+      addMessage("bot", reply);
+      messages.push({ role: "assistant", content: reply });
     }
-    function hideGameDetails() {
-      document.getElementById('gameOverlay').style.display = 'none';
+
+    function addMessage(role, text) {
+      const div = document.createElement("div");
+      div.className = `message ${role}`;
+      div.innerText = text;
+      document.getElementById("messages").appendChild(div);
     }
   </script>
 </body>
