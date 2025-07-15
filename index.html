@@ -266,7 +266,7 @@
 
         chatBox.scrollTop = chatBox.scrollHeight;
       } catch (err) {
-        document.querySelectorAll(".bot").slice(-1)[0].remove();
+        [...document.querySelectorAll(".bot")].slice(-1)[0].remove();
         chatBox.innerHTML += `<div class="bot">❌ Ошибка запроса: ${err.message}</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
       }
