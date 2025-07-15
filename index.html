@@ -2,273 +2,182 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mistral Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💬 Чат с Mistral</title>
   <style>
-    * { box-sizing: border-box; }
-
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0d0d0d, #1c1c1c);
+      background: linear-gradient(to right, #111, #1a1a1a);
       color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
     }
-
-    .header, .footer {
-      background: #111;
-      padding: 15px;
+    h1 {
+      color: #00bfff;
       text-align: center;
     }
-
-    .header h1 {
-      color: #00bfff;
-      margin: 0;
-    }
-
     .container {
-      max-width: 800px;
-      margin: 20px auto;
+      max-width: 600px;
+      margin: auto;
       background: #222;
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 20px;
       box-shadow: 0 0 15px #000;
     }
-
-    .chat-box {
-      margin-top: 20px;
-      max-height: 400px;
-      overflow-y: auto;
-      background: #000;
-      padding: 15px;
-      border-radius: 8px;
-    }
-
-    .user { color: #0f0; }
-    .bot { color: #0af; margin-bottom: 10px; }
-
-    textarea, select {
+    input, textarea, select {
       width: 100%;
+      padding: 10px;
       margin-top: 10px;
       background: #333;
       border: 1px solid #444;
       color: #fff;
-      padding: 10px;
       border-radius: 6px;
     }
-
     button {
       width: 100%;
-      margin-top: 15px;
       padding: 12px;
       background: #00bfff;
       border: none;
       color: #fff;
       font-weight: bold;
+      margin-top: 15px;
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.3s;
     }
-
     button:hover {
       background: #0099cc;
     }
-
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
+    .chat {
       margin-top: 20px;
+      white-space: pre-wrap;
     }
-
-    .hidden {
-      display: none;
-    }
-
-    .language-select {
-      margin-top: 20px;
-    }
-
-    .confirmation {
-      background: #111;
-      padding: 20px;
-      border-radius: 8px;
+    .user { color: #0f0; }
+    .bot { color: #0af; margin-bottom: 10px; }
+    .bot.thinking { color: #888; font-style: italic; }
+    footer {
       text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #aaa;
     }
-
-    .confirmation button {
-      width: auto;
-      margin: 10px;
+    .contacts {
+      margin-top: 30px;
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .contacts a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+    .tariffs {
+      margin-top: 10px;
+      padding: 10px;
+      background: #333;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1 id="title">💬 Чат с Mistral</h1>
-  </div>
+  <div class="container">
+    <h1>💬 Чат с Mistral (API)</h1>
 
-  <div class="container" id="mainPage">
-    <label id="labelMessage">💬 Ваше сообщение:</label>
-    <textarea id="userInput" rows="3" placeholder="Напишите что-нибудь..."></textarea>
+    <label>🌐 Язык интерфейса:</label>
+    <select id="language" onchange="changeLanguage()">
+      <option value="ru">Русский</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
 
-    <div class="language-select">
-      <label id="labelLanguage">🌐 Язык интерфейса:</label>
-      <select id="languageSelect" onchange="changeLanguage()">
-        <option value="ru">Русский</option>
-        <option value="en">English</option>
-        <option value="es">Español</option>
-      </select>
-    </div>
+    <label id="msgLabel">💬 Твоё сообщение:</label>
+    <textarea id="userInput" rows="4" placeholder="Напиши что-нибудь..."></textarea>
 
-    <button onclick="startChat()">▶️ Начать диалог</button>
-  </div>
+    <button onclick="sendMessage()">▶️ Отправить</button>
 
-  <div class="container hidden" id="chatPage">
-    <div class="chat-box" id="chatBox">
-      <p><i>💬 Чат начат. Ваши сообщения появятся здесь.</i></p>
-    </div>
+    <div class="chat" id="chatBox"></div>
 
-    <textarea id="chatInput" rows="3" placeholder="Введите сообщение..."></textarea>
-    <button onclick="sendMessage()">✉️ Отправить</button>
+    <div class="contacts">
+      <h3>📢 Наши ресурсы</h3>
+      <p>📬 Сотрудничество: <a href="mailto:savich618@gmail.com">savich618@gmail.com</a></p>
+      <p>🤖 Официальный бот: <a href="https://t.me/chatGPT_free_RUSbot" target="_blank">@chatGPT_free_RUSbot</a></p>
+      <p>👤 Владелец: <a href="https://t.me/only_work4" target="_blank">@only_work4</a></p>
 
-    <div class="controls">
-      <button onclick="newDialog()">🔄 Новый диалог</button>
-      <button onclick="confirmExit()">🚪 Выйти</button>
-    </div>
-  </div>
-
-  <div class="container hidden" id="confirmExitPage">
-    <div class="confirmation">
-      <p id="confirmText">Вы уверены, что хотите выйти?</p>
-      <button onclick="exitToMain()">✅ Да</button>
-      <button onclick="cancelExit()">❌ Нет</button>
+      <div class="tariffs">
+        <strong>💸 Тарифы:</strong><br>
+        ▪️ Бот (чат GPT): 250 руб<br>
+        ▪️ Web-приложение: 500 руб<br>
+        🔥 Всё вместе: <b>600 рублей</b><br>
+        📦 Лучшее предложение — пишите <a href="https://t.me/only_work4">@only_work4</a>
+      </div>
     </div>
   </div>
 
-  <div class="footer">
-    <p>&copy; 2025 Mistral Chat</p>
-  </div>
+  <footer>
+    &copy; 2025 Mistral Chat UI • All rights reserved
+  </footer>
 
   <script>
-    const API_KEY = "XY5HurrCbil8xtO95LLdpuk9YQ54LBJV";
-
-    const langText = {
-      ru: {
-        title: "💬 Чат с Mistral",
-        labelMessage: "💬 Ваше сообщение:",
-        labelLanguage: "🌐 Язык интерфейса:",
-        start: "▶️ Начать диалог",
-        send: "✉️ Отправить",
-        newDialog: "🔄 Новый диалог",
-        exit: "🚪 Выйти",
-        confirm: "Вы уверены, что хотите выйти?",
-      },
-      en: {
-        title: "💬 Chat with Mistral",
-        labelMessage: "💬 Your message:",
-        labelLanguage: "🌐 Interface language:",
-        start: "▶️ Start chat",
-        send: "✉️ Send",
-        newDialog: "🔄 New dialog",
-        exit: "🚪 Exit",
-        confirm: "Are you sure you want to exit?",
-      },
-      es: {
-        title: "💬 Chat con Mistral",
-        labelMessage: "💬 Tu mensaje:",
-        labelLanguage: "🌐 Idioma de la interfaz:",
-        start: "▶️ Iniciar chat",
-        send: "✉️ Enviar",
-        newDialog: "🔄 Nuevo diálogo",
-        exit: "🚪 Salir",
-        confirm: "¿Estás seguro de que quieres salir?",
-      }
-    };
-
-    function changeLanguage() {
-      const lang = document.getElementById("languageSelect").value;
-      document.getElementById("title").textContent = langText[lang].title;
-      document.getElementById("labelMessage").textContent = langText[lang].labelMessage;
-      document.getElementById("labelLanguage").textContent = langText[lang].labelLanguage;
-      document.querySelector("#mainPage button").textContent = langText[lang].start;
-      document.querySelector("#chatPage button").textContent = langText[lang].send;
-      document.querySelectorAll(".controls button")[0].textContent = langText[lang].newDialog;
-      document.querySelectorAll(".controls button")[1].textContent = langText[lang].exit;
-      document.getElementById("confirmText").textContent = langText[lang].confirm;
-    }
-
-    function startChat() {
-      document.getElementById("mainPage").classList.add("hidden");
-      document.getElementById("chatPage").classList.remove("hidden");
-
-      const firstMsg = document.getElementById("userInput").value.trim();
-      if (firstMsg) {
-        document.getElementById("chatInput").value = firstMsg;
-        sendMessage();
-      }
-    }
-
-    function newDialog() {
-      document.getElementById("chatBox").innerHTML = "<p><i>💬 Новый диалог начат.</i></p>";
-    }
-
-    function confirmExit() {
-      document.getElementById("chatPage").classList.add("hidden");
-      document.getElementById("confirmExitPage").classList.remove("hidden");
-    }
-
-    function cancelExit() {
-      document.getElementById("confirmExitPage").classList.add("hidden");
-      document.getElementById("chatPage").classList.remove("hidden");
-    }
-
-    function exitToMain() {
-      document.getElementById("confirmExitPage").classList.add("hidden");
-      document.getElementById("mainPage").classList.remove("hidden");
-      document.getElementById("chatBox").innerHTML = "";
-      document.getElementById("userInput").value = "";
-    }
+    const apiKey = "XY5HurrCbil8xtO95LLdpuk9YQ54LBJV";
+    const chatBox = document.getElementById('chatBox');
+    const messages = [];
 
     async function sendMessage() {
-      const chatBox = document.getElementById("chatBox");
-      const input = document.getElementById("chatInput");
-      const message = input.value.trim();
-      if (!message) return;
+      const message = document.getElementById('userInput').value.trim();
+      if (!message) return alert("Введите сообщение");
 
-      chatBox.innerHTML += `<div class="user">👤 ${message}</div>`;
-      chatBox.innerHTML += `<div class="bot">🤖 ... бот думает ...</div>`;
+      chatBox.innerHTML += `👤 <span class="user">${message}</span>\n`;
+      chatBox.innerHTML += `🤖 <span class="bot thinking">⏳ Бот думает...</span>\n`;
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      input.value = "";
+      messages.push({ role: "user", content: message });
 
       try {
         const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
           method: "POST",
           headers: {
-            "Authorization": `Bearer ${API_KEY}`,
+            "Authorization": `Bearer ${apiKey}`,
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
             model: "mistral-small-latest",
-            messages: [{ role: "user", content: message }],
+            messages: messages,
             temperature: 0.7
           })
         });
 
         const data = await response.json();
-        document.querySelectorAll(".bot").slice(-1)[0].remove();
+
+        // Удаляем "думает"
+        const botMessages = [...document.querySelectorAll(".bot")];
+        if (botMessages.length > 0) botMessages.slice(-1)[0].remove();
 
         if (data.choices && data.choices.length > 0) {
           const reply = data.choices[0].message.content;
-          chatBox.innerHTML += `<div class="bot">🤖 ${reply}</div>`;
+          chatBox.innerHTML += `🤖 <span class="bot">${reply}</span>\n`;
+          messages.push({ role: "assistant", content: reply });
         } else {
-          chatBox.innerHTML += `<div class="bot">❌ Ошибка: ${JSON.stringify(data)}</div>`;
+          chatBox.innerHTML += `❌ <span class="bot">Ошибка: ${JSON.stringify(data)}</span>\n`;
         }
-
-        chatBox.scrollTop = chatBox.scrollHeight;
       } catch (err) {
-        [...document.querySelectorAll(".bot")].slice(-1)[0].remove();
-        chatBox.innerHTML += `<div class="bot">❌ Ошибка запроса: ${err.message}</div>`;
-        chatBox.scrollTop = chatBox.scrollHeight;
+        const botMessages = [...document.querySelectorAll(".bot")];
+        if (botMessages.length > 0) botMessages.slice(-1)[0].remove();
+        chatBox.innerHTML += `❌ <span class="bot">Ошибка запроса: ${err.message}</span>\n`;
+      }
+    }
+
+    function changeLanguage() {
+      const lang = document.getElementById('language').value;
+      const label = document.getElementById('msgLabel');
+      switch (lang) {
+        case 'en':
+          label.textContent = "💬 Your message:";
+          break;
+        case 'es':
+          label.textContent = "💬 Tu mensaje:";
+          break;
+        default:
+          label.textContent = "💬 Твоё сообщение:";
       }
     }
   </script>
